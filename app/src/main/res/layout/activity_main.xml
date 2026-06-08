@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0d0f14"
+    android:padding="20dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="USSD Gateway" android:textColor="#4f8ef7"
+            android:textSize="26sp" android:textStyle="bold"
+            android:gravity="center" android:layout_marginBottom="24dp"/>
+
+        <TextView android:id="@+id/tvStatus"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="🔴 الخدمة متوقفة" android:textColor="#e8eaf0"
+            android:textSize="16sp" android:gravity="center"
+            android:padding="12dp" android:background="#1e2230"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="رابط الخادم" android:textColor="#6b7280"
+            android:layout_marginBottom="6dp"/>
+        <EditText android:id="@+id/etServer"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="http://192.168.1.9" android:textColor="#e8eaf0"
+            android:textColorHint="#6b7280" android:background="#1e2230"
+            android:padding="14dp" android:inputType="textUri"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="المفتاح السري" android:textColor="#6b7280"
+            android:layout_marginBottom="6dp"/>
+        <EditText android:id="@+id/etSecret"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="MY_SECRET_2024" android:textColor="#e8eaf0"
+            android:textColorHint="#6b7280" android:background="#1e2230"
+            android:padding="14dp" android:layout_marginBottom="16dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="الشريحة" android:textColor="#6b7280"
+            android:layout_marginBottom="6dp"/>
+        <Spinner android:id="@+id/spSim"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:background="#1e2230" android:padding="14dp"
+            android:entries="@array/sim_options"
+            android:layout_marginBottom="24dp"/>
+
+        <Button android:id="@+id/btnSave"
+            android:layout_width="match_parent" android:layout_height="56dp"
+            android:text="حفظ الإعدادات" android:textColor="#ffffff"
+            android:backgroundTint="#534AB7" android:layout_marginBottom="10dp"/>
+
+        <Button android:id="@+id/btnStart"
+            android:layout_width="match_parent" android:layout_height="56dp"
+            android:text="▶ تشغيل الخدمة" android:textColor="#ffffff"
+            android:backgroundTint="#1D9E75" android:layout_marginBottom="10dp"/>
+
+        <Button android:id="@+id/btnStop"
+            android:layout_width="match_parent" android:layout_height="56dp"
+            android:text="⏹ إيقاف الخدمة" android:textColor="#ffffff"
+            android:backgroundTint="#E24B4A" android:layout_marginBottom="10dp"/>
+
+        <Button android:id="@+id/btnAccessibility"
+            android:layout_width="match_parent" android:layout_height="56dp"
+            android:text="⚙ تفعيل Accessibility" android:textColor="#ffffff"
+            android:backgroundTint="#185FA5" android:layout_marginBottom="20dp"/>
+    </LinearLayout>
+</ScrollView>
