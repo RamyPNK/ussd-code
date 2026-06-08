@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.ussd.gateway"
-    compileSdk = 34
+    compileSdk = 35 // قم بتغيير هذا الرقم إلى 35
 
     defaultConfig {
         applicationId = "com.ussd.gateway"
         minSdk = 23
-        targetSdk = 34
+        targetSdk = 35 // يفضل تحديث هذا الرقم أيضاً ليطابق ما قبله
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -31,12 +31,19 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.12.0")
+    // مكتبات غير موجودة في الـ TOML (ستبقى لها تحذيرات بسيطة وهذا طبيعي)
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
-    implementation(platform("androidx.compose:compose-bom:2024.02.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.activity:activity-compose:1.8.2")
-    testImplementation("junit:junit:4.13.2")
+    implementation("androidx.compose.foundation:foundation")
+
+    // مكتبات تم تحويلها لاستخدام Version Catalog
+    implementation(libs.androidx.core.ktx)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.activity.compose)
+
+    testImplementation(libs.junit)
 }
