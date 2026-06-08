@@ -22,6 +22,13 @@ class USSDAccessibilityService : AccessibilityService() {
         if (!isWaitingForUSSD || event == null) return
         val root = rootInActiveWindow ?: return
         val text = extractText(root)
+
+        // ---- التعديل الأهم: تجاهل رسائل التحميل المؤقتة ----
+        val lower = text.lowercase()
+        if (lower.contains("running") || lower.contains("cours") || lower.contains("تشغيل") || lower.contains("patientez")) {
+            return // نتجاهل هذه الرسالة لكي يستمر في انتظار العروض الحقيقية
+        }
+
         if (text.isNotEmpty()) {
             lastUSSDResponse = text
             isWaitingForUSSD = false
@@ -48,7 +55,7 @@ class USSDAccessibilityService : AccessibilityService() {
         fun click(n: AccessibilityNodeInfo?): Boolean {
             if (n == null) return false
             val t = n.text?.toString()?.lowercase()
-            if (t == "ok" || t == "dismiss" || t == "موافق") {
+            if (t == "ok" || t == "dismiss" || t == "موافق" || t == "send" || t == "إرسال") {
                 n.performAction(AccessibilityNodeInfo.ACTION_CLICK)
                 return true
             }

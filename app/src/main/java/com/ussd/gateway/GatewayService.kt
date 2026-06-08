@@ -59,19 +59,22 @@ class GatewayService : Service() {
     private fun checkOffers() {
         val res = get(Config.OFFERS_POLL_URL) ?: return
         if (res == "EMPTY" || res == "DENIED") return
+
         val parts = res.split("||")
         if (parts.size < 3) return
-        val code1 = parts[0].trim()
-        val code2 = parts[1].trim()
-        val reqId = parts[2].trim()
+
+        val code = parts[0].trim()
+        val reqId = parts[1].trim()
+        val sourceCode = parts[2].trim()
+
         updateNotif("جلب العروض...")
-        call(code1)
-        val r1 = waitUSSD(8000)
-        get("${Config.OFFERS_REPORT_URL}?secret=${Config.SECRET_KEY}&request_id=$reqId&source_code=1&success=1&raw_response=${Uri.encode(r1)}")
-        Thread.sleep(2000)
-        call(code2)
-        val r2 = waitUSSD(8000)
-        get("${Config.OFFERS_REPORT_URL}?secret=${Config.SECRET_KEY}&request_id=$reqId&source_code=2&success=1&raw_response=${Uri.encode(r2)}")
+
+        // تنفيذ كود واحد فقط
+        call(code)
+        val r1 = waitUSSD(15000)
+
+        get("${Config.OFFERS_REPORT_URL}?secret=${Config.SECRET_KEY}&request_id=$reqId&source_code=$sourceCode&success=1&raw_response=${Uri.encode(r1)}")
+
         updateNotif("جاري التشغيل...")
     }
 
